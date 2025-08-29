@@ -1,0 +1,32 @@
+task: >
+  You have been given raw metagenomic data from a sample of soil from a carrot monoculture.
+  Using the provided single-end FASTQ file, use fastp, megahit, prodigal and multiqc to answer the following.
+
+questions:
+  - id: q1
+    stage: quality_control
+    text: |
+      What percentage of reads from the sample have passed the default filters for fastp?
+    answer_type: numeric_percent
+    tolerance: 0.5 # ±0.5 percentage points accepted
+  - id: q2
+    stage: assembly
+    text: |
+      How many contigs were assembled?
+    answer_type: integer_exact
+  - id: q3
+    stage: assembly
+    text: |
+      What is the average contig length in base pairs?
+    answer_type: integer_exact
+  - id: q4
+    stage: annotation
+    text: |
+      How many genes were predicted in total?
+    answer_type: integer_exact
+  - id: q5
+    stage: annotation
+    text: |
+      What is the average protein length?
+    answer_type: numeric_percent
+    tolerance: 1.5
