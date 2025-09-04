@@ -1,77 +1,55 @@
+# README
 
+## 1\. Data sources
 
-#  README
+This workflow analyzes a **shotgun metagenomics dataset** from the study titled **"Shotgun metagenomics dataset of the core rhizo-microbiome of monoculture and soybean-precedent carrot"**. The raw sequencing data is publicly available from the Sequence Read Archive (SRA) under accession **SRP539180** and was generated using **Illumina** sequencing.
 
-## 1. Data sources
+The raw FASTQ files and associated metadata are stored in the `data/` directory and are the primary inputs for this analysis.
 
-This task is based on publicly available sequencing data from a study of **\[insert study topic here]**. The dataset includes multiple samples under different conditions (e.g., treated vs. control) and was originally sequenced using **\[insert platform, e.g., Illumina 2×150]**.
-The subsampled and cleaned FASTQs are stored in `data/` and are used as the inputs for the workflow.
+-----
 
----
-
-## 2. How to download
-
-INSTRUCTIONS TO ACCESS THE DATA
-### Example using SRA Toolkit
+## 2\. How to download and prepare data
 
 ```bash
-CODE TO DOWNLOAD
+cd data/
+
+bash download.sh
+
+bash subsample.sh
 ```
 
+-----
 
----
+## 3\. How the workflow works
 
-## 3. Pre-processing / subsampling
+The main analysis is located in the `workflow/` directory. It consists of two scripts that perform quality control, metagenomic assembly, gene prediction, and downstream analysis.
 
-INCLUDE THE METHOD YOU USED TO SUBSAMPLE, MINATURIZE, OR TRIM DOWN
+### Step 1 – Run Pipeline (`run_pipeline.sh`)
 
-1. **STEP 1** ...
+**Purpose:** This script processes the subsampled reads to generate a set of assembled contigs and predict protein-coding genes from them. It involves three main stages: quality control, assembly, and gene annotation. 🔬
 
-Example:
+**Tools:** `fastp`, `MultiQC`, `MEGAHIT`, `Prodigal`
 
-```bash
-CODE TO SUBSAMPLE
-```
+**Inputs:**
 
+  * Subsampled paired-end FASTQ files (`data/sra_data_downsampled/`)
 
----
-
-## 4. How the workflow works
-DESCRIBE THE WORKFLOW HERE - NOTE THE BELOW ARE JUST EXAMPLES, REPLACE WITH YOUR OWN - YOURS CAN TAKE A VERY DIFFERENT FORMAT
-The workflow files is stored in `workflow/`.
-
----
-
-### Step 1 – Quality Control (example)
-
-**Purpose:** Remove low-quality reads and adapter sequences
-**Tools:** `fastp`, `cutadapt`, `trimmomatic`
-**Inputs:** Subsampled FASTQ files (from `data/fastq_subsampled/`)
-**Outputs:** Cleaned FASTQs, QC reports (`.html`, `.json`, or `.txt`)
 **Command:**
 
 ```bash
-fastp --in1 sample.fastq.gz --out1 cleaned.fastq.gz ...
+bash workflow/run_pipeline.sh
 ```
 
----
+-----
 
-### Step 2 ...
+### Step 2 – Answer Question 5 (`question_5.R`)
 
-**Purpose:** ...
-**Tools:** ...
-**Inputs:** ...
-**Outputs:** ...
+**Purpose:** This script uses the predicted protein data to answer a question.
+
+**Tools:** `R`
+
 **Command:**
 
-
----
-
-### Step X – Analysis (e.g., DESeq2, variant calling, etc.)
-
-**Purpose:** ...
-**Tools:** ...
-**Inputs:** ...
-**Outputs:** ...
-**Command:**
-
+```bash
+Rscript workflow/question_5.R
+```
