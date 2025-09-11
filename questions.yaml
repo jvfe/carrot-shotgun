@@ -8,7 +8,6 @@ questions:
     text: |
       What percentage of reads from the sample have passed the default filters for fastp?
     answer_type: numeric_percent
-    tolerance: 0.5 # ±0.5 percentage points accepted
   - id: q2
     stage: assembly
     text: |
@@ -29,4 +28,3 @@ questions:
     text: |
       What is the average protein length?
     answer_type: numeric_percent
-    tolerance: 1.5
