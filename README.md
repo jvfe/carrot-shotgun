@@ -6,7 +6,7 @@ This workflow analyzes a **shotgun metagenomics dataset** from the study titled 
 
 The raw FASTQ files and associated metadata are stored in the `data/` directory and are the primary inputs for this analysis.
 
------
+---
 
 ## 2\. How to download and prepare data
 
@@ -18,7 +18,7 @@ bash download.sh
 bash subsample.sh
 ```
 
------
+---
 
 ## 3\. How the workflow works
 
@@ -32,7 +32,7 @@ The main analysis is located in the `workflow/` directory. It consists of two sc
 
 **Inputs:**
 
-  * Subsampled paired-end FASTQ files (`data/sra_data_downsampled/`)
+- Subsampled paired-end FASTQ files (`data/sra_data_downsampled/`)
 
 **Command:**
 
@@ -40,9 +40,9 @@ The main analysis is located in the `workflow/` directory. It consists of two sc
 bash workflow/run_pipeline.sh
 ```
 
------
+---
 
-### Step 2 – Answer Question 5 (`question_5.R`)
+### Step 2 – Answer Questions 4 and 5 (`question_5.R`)
 
 **Purpose:** This script uses the predicted protein data to answer a question.
 
@@ -51,5 +51,6 @@ bash workflow/run_pipeline.sh
 **Command:**
 
 ```bash
+absh workflow/question_4.sh
 Rscript workflow/question_5.R
 ```

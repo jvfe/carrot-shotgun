@@ -40,7 +40,10 @@ echo "[$(date)] Running MEGAHIT for assembly..."
 megahit \
     -r "$TRIMMED_FQ" \
     -o "$MEGAHIT_OUTDIR" \
-    --min-contig-len 1000 \
+    --min-contig-len 500 \
+    --mem-flag 0 \
+    --k-min 21 --k-max 121 --k-step 20 \
+    --no-mercy \
     -t 4
 
 CONTIGS="${MEGAHIT_OUTDIR}/final.contigs.fa"

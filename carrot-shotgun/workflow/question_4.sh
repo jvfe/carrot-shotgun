@@ -1,0 +1,1 @@
+grep -c ">" SRR31030799_results/SRR31030799_prodigal_prediction/SRR31030799_genes.fna
