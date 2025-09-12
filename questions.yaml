@@ -1,6 +1,7 @@
 task: >
   You have been given raw metagenomic data from a sample of soil from a carrot monoculture.
   Using the provided single-end FASTQ file, use fastp, megahit, prodigal and multiqc to answer the following.
+  When running megahit, add the following parameters: --min-contig-len 500 --mem-flag 0 --k-min 21 --k-max 121 --k-step 20 --no-mercy.
 
 questions:
   - id: q1
